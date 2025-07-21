@@ -19,17 +19,30 @@
                 </a>
             </div>
             <div class="space-x-6 font-bold">
-                <a href="">Jobs</a>
-                <a href="">Careers</a>
-                <a href="">Salaries</a>
-                <a href="">Companies</a>
+                <a href="/jobs">Jobs</a>
+                <a href="/careers">Careers</a>
+                <a href="/companies">Companies</a>
+                <a href="/logout">Logout</a>
             </div>
-            <div>
-                <a href="">Post a Job</a>
-            </div>
+            @auth
+                <div class="space-x-6 font-bold flex">
+                    <a href="/jobs/create">Post a Job</a>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Logout</button>
+                    </form>
+                </div>
+            @endauth
+            @guest
+                <div class="space-x-6 font-bold">
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                </div>
+            @endguest
         </nav>
 
-        <main class="mt-10 max-w-[986px] mx-auto">
+        <main class="mt-10 max-w-[986px] mx-auto pb-20">
             {{ $slot }}
         </main>
    </div>

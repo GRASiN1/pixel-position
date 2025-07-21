@@ -14,6 +14,6 @@
     }
 @endphp
 
-<a href="/tags/{{ strToLower($tag->name) }}" {{ $attributes->merge(['class' => $class]) }}>
+<a href="{{ url('/tags/' . urlencode(trim($tag->name))) }}" {{ $attributes->merge(['class' => $class]) }}>
     {{ $tag->name }}
 </a>
